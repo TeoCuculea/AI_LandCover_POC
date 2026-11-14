@@ -1,0 +1,20 @@
+# Imaginile EuroSAT (3 GB) se descarca separat, vezi README
+data/
+
+# Checkpoint-uri de model (134 MB fiecare, peste limita GitHub de 100 MB)
+*.pth
+
+# Versiuni vechi pastrate local
+archive/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editor / sistem
+.vscode/
+.idea/
+Thumbs.db
+~$*.docx

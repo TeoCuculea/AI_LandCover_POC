@@ -1,0 +1,21 @@
+{
+    "run_id": "disertatie_final_01",
+    "representation": "rgb",
+    "split_strategy": "random",
+    "best_epoch": 19,
+    "best_validation_accuracy": 0.9730864197530864,
+    "best_validation_macro_f1": 0.9721363805501273,
+    "checkpoint_selection_metric": "validation_macro_f1",
+    "test_loss": 0.07942679535999986,
+    "test_accuracy": 0.98,
+    "test_macro_f1": 0.9792426529383521,
+    "batch_size": 32,
+    "epochs": 30,
+    "epochs_completed": 25,
+    "early_stopping_patience": 6,
+    "early_stopping_min_delta": 0.001,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "random_seed": 42,
+    "device": "cuda"
+}

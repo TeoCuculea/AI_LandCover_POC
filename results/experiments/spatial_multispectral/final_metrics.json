@@ -1,0 +1,14 @@
+{
+    "representation": "multispectral",
+    "split_strategy": "spatial",
+    "best_epoch": 2,
+    "best_validation_accuracy": 0.9753086419753086,
+    "test_loss": 0.08087908023577413,
+    "test_accuracy": 0.9738271604938271,
+    "test_macro_f1": 0.9724435579191274,
+    "batch_size": 32,
+    "epochs": 2,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "device": "cuda"
+}

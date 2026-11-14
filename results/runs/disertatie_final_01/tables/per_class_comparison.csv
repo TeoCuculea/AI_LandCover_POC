@@ -1,0 +1,21 @@
+Split,Class,RGB F1,Multispectral F1,F1 Improvement
+Random,AnnualCrop,0.969027,0.964523,-0.004503
+Random,Forest,0.993318,0.985761,-0.007557
+Random,HerbaceousVegetation,0.976796,0.965897,-0.010899
+Random,Highway,0.978836,0.965789,-0.013047
+Random,Industrial,0.986631,0.955923,-0.030708
+Random,Pasture,0.968386,0.966443,-0.001943
+Random,PermanentCrop,0.953930,0.933151,-0.020778
+Random,Residential,0.992265,0.973799,-0.018466
+Random,River,0.979920,0.969128,-0.010792
+Random,SeaLake,0.993318,0.997778,0.004459
+Spatial,AnnualCrop,0.967157,0.984444,0.017287
+Spatial,Forest,0.994438,0.994463,0.000025
+Spatial,HerbaceousVegetation,0.959206,0.972253,0.013047
+Spatial,Highway,0.985430,0.986737,0.001307
+Spatial,Industrial,0.987984,0.984000,-0.003984
+Spatial,Pasture,0.971619,0.971235,-0.000384
+Spatial,PermanentCrop,0.947230,0.960212,0.012983
+Spatial,Residential,0.997783,0.985539,-0.012243
+Spatial,River,0.978495,0.986631,0.008136
+Spatial,SeaLake,0.995575,1.000000,0.004425

@@ -1,0 +1,13 @@
+numpy
+pandas
+matplotlib
+seaborn
+rasterio
+shapely
+pyproj
+folium
+scikit-learn
+tifffile
+torch
+torchvision
+Pillow
