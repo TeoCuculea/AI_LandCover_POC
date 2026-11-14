@@ -9,3 +9,9 @@ scikit-learn
 torch
 torchvision
 python-docx
+pystac-client
+odc-stac
+xarray
+rioxarray
+geopandas
+dask

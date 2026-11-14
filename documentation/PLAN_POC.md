@@ -99,6 +99,7 @@ De verificat în ziua 2: formatul fișierelor EFDA pentru România și dacă Han
 
 ## Cum arată o zi de lucru
 
+0. **Recapitulare, 10 min:** 5 întrebări din zilele trecute (din [invatare/flashcards.csv](invatare/flashcards.csv)), înainte de orice altceva. Ce nu știi revine și data viitoare.
 1. **Teorie, 45–60 min:** îți explic conceptele zilei pe exemple mici, înainte de orice cod. Nu trecem mai departe până nu le poți spune cu vorbele tale.
 2. **Tu scrii, 1–2 ore:** o bucată mică și bine delimitată, cu indicații, nu cu soluția. Eu o revizuiesc și îți explic ce aș schimba.
 3. **Eu scriu, tu citești:** partea de instalații (descărcare, aliniere, salvare, grafice). O parcurgem împreună și trebuie să o poți explica.
