@@ -34,10 +34,13 @@ NUM_CLASSES = 10
 NUM_BANDS = 13
 IMAGE_SIZE = 64
 
+# Band order inside the EuroSAT TIFF files. B8A is stored LAST, not after
+# B08: band index 9 has a mean of about 12 (B10, cirrus) and index 12 tracks
+# B08 closely (B8A). TorchGeo lists the same order for this dataset.
 BAND_NAMES = [
     "B01", "B02", "B03", "B04", "B05",
-    "B06", "B07", "B08", "B8A", "B09",
-    "B10", "B11", "B12"
+    "B06", "B07", "B08", "B09", "B10",
+    "B11", "B12", "B8A"
 ]
 
 RGB_BANDS = [3, 2, 1]

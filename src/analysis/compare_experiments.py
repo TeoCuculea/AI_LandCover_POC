@@ -6,7 +6,6 @@ import json
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from src.config import FIGURES_DIR, RESULTS_DIR, TABLES_DIR
 from src.run_paths import run_directory
 
 
@@ -18,15 +17,13 @@ EXPERIMENTS = (
 )
 
 
-def _output_directories(run_id: str | None = None):
+def _output_directories(run_id: str):
     """Return the experiment, table, and figure directories for a run."""
-    if run_id is None:
-        return RESULTS_DIR / "experiments", TABLES_DIR, FIGURES_DIR
     run_root = run_directory(run_id)
     return run_root / "experiments", run_root / "tables", run_root / "figures"
 
 
-def load_experiment_results(run_id: str | None = None) -> pd.DataFrame:
+def load_experiment_results(run_id: str) -> pd.DataFrame:
     """Load final metrics for each experiment with a saved result file."""
     experiment_directory, _, _ = _output_directories(run_id)
     rows = []
@@ -51,7 +48,7 @@ def load_experiment_results(run_id: str | None = None) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def save_comparison_table(results: pd.DataFrame, output_directory=TABLES_DIR) -> None:
+def save_comparison_table(results: pd.DataFrame, output_directory) -> None:
     """Save the experiment metrics as a CSV table."""
     output_directory.mkdir(parents=True, exist_ok=True)
     output_path = output_directory / "experiment_comparison.csv"
@@ -64,7 +61,7 @@ def _save_metric_chart(
     column: str,
     title: str,
     filename: str,
-    output_directory=FIGURES_DIR,
+    output_directory,
 ) -> None:
     """Render one metric comparison using a shared chart style."""
     plot_data = results.sort_values(["Split", "Representation"])
@@ -85,19 +82,19 @@ def _save_metric_chart(
     _save_figure(fig, output_directory / filename)
 
 
-def save_accuracy_comparison(results: pd.DataFrame, output_directory=FIGURES_DIR) -> None:
+def save_accuracy_comparison(results: pd.DataFrame, output_directory) -> None:
     """Save the test accuracy comparison chart."""
     _save_metric_chart(results, "Test Accuracy", "Test Accuracy Comparison",
                        "test_accuracy_comparison.png", output_directory)
 
 
-def save_macro_f1_comparison(results: pd.DataFrame, output_directory=FIGURES_DIR) -> None:
+def save_macro_f1_comparison(results: pd.DataFrame, output_directory) -> None:
     """Save the test macro-F1 comparison chart."""
     _save_metric_chart(results, "Test Macro F1", "Test Macro F1 Comparison",
                        "test_macro_f1_comparison.png", output_directory)
 
 
-def save_multispectral_improvement(results: pd.DataFrame, output_directory=FIGURES_DIR) -> None:
+def save_multispectral_improvement(results: pd.DataFrame, output_directory) -> None:
     """Plot multispectral gains over RGB in percentage points."""
     rows = []
     for split in ("Random", "Spatial"):
@@ -160,7 +157,8 @@ def main(run_id: str | None = None) -> None:
     """Generate the experiment table and comparison charts."""
     if run_id is None:
         parser = argparse.ArgumentParser(description=__doc__)
-        parser.add_argument("--run-id", help="Read and write outputs under this run ID.")
+        parser.add_argument("--run-id", required=True,
+                            help="Run folder under results/runs/ to read and write.")
         run_id = parser.parse_args().run_id
     _, table_directory, figure_directory = _output_directories(run_id)
     results = load_experiment_results(run_id)

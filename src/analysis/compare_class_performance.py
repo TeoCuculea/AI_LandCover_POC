@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from src.config import FIGURES_DIR, RESULTS_DIR, TABLES_DIR
 from src.run_paths import run_directory
 
 
@@ -25,15 +24,13 @@ AGGREGATE_ROWS = {
 METRICS = ("RGB F1", "Multispectral F1", "F1 Improvement")
 
 
-def _output_directories(run_id: str | None = None):
+def _output_directories(run_id: str):
     """Return the experiment, table, and figure directories for a run."""
-    if run_id is None:
-        return RESULTS_DIR / "experiments", TABLES_DIR, FIGURES_DIR
     run_root = run_directory(run_id)
     return run_root / "experiments", run_root / "tables", run_root / "figures"
 
 
-def load_classification_report(experiment_name: str, run_id: str | None = None) -> dict:
+def load_classification_report(experiment_name: str, run_id: str) -> dict:
     """Read a saved test classification report for one experiment."""
     experiment_directory, _, _ = _output_directories(run_id)
     report_path = experiment_directory / experiment_name / "test_classification_report.json"
@@ -54,7 +51,7 @@ def _class_names(report: dict) -> list[str]:
     ]
 
 
-def load_class_performance(run_id: str | None = None) -> pd.DataFrame:
+def load_class_performance(run_id: str) -> pd.DataFrame:
     """Combine per-class test F1 scores from the four experiment reports."""
     reports = {
         (split, representation): load_classification_report(experiment, run_id)
@@ -82,7 +79,7 @@ def load_class_performance(run_id: str | None = None) -> pd.DataFrame:
     return pd.DataFrame(rows, columns=("Split", "Class", *METRICS))
 
 
-def save_f1_comparison(data: pd.DataFrame, split: str, output_directory=FIGURES_DIR) -> None:
+def save_f1_comparison(data: pd.DataFrame, split: str, output_directory) -> None:
     """Save a grouped RGB and multispectral F1 chart for one split."""
     split_data = data.loc[data["Split"] == split]
     positions = np.arange(len(split_data))
@@ -105,7 +102,7 @@ def save_f1_comparison(data: pd.DataFrame, split: str, output_directory=FIGURES_
     _save_figure(fig, output_directory / f"per_class_f1_{split.lower()}.png")
 
 
-def save_improvement_chart(data: pd.DataFrame, output_directory=FIGURES_DIR) -> None:
+def save_improvement_chart(data: pd.DataFrame, output_directory) -> None:
     """Save the per-class difference between multispectral and RGB F1."""
     improvement = data.pivot(index="Class", columns="Split", values="F1 Improvement")
     positions = np.arange(len(improvement))
@@ -137,7 +134,8 @@ def main(run_id: str | None = None) -> None:
     """Generate the class-level CSV and charts from saved reports."""
     if run_id is None:
         parser = argparse.ArgumentParser(description=__doc__)
-        parser.add_argument("--run-id", help="Read and write outputs under this run ID.")
+        parser.add_argument("--run-id", required=True,
+                            help="Run folder under results/runs/ to read and write.")
         run_id = parser.parse_args().run_id
     _, table_directory, figure_directory = _output_directories(run_id)
     data = load_class_performance(run_id)

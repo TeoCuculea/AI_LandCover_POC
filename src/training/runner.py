@@ -386,6 +386,11 @@ def train_model(
         index=False,
     )
 
+    save_training_plots(
+        history=history,
+        output_directory=experiment_directory,
+    )
+
     print("\nTraining completed.")
     print(f"Best epoch: {best_epoch}")
     print(f"Validation accuracy at selected epoch: {best_validation_accuracy:.4f}")

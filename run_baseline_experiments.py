@@ -62,17 +62,19 @@ def _training_command(arguments, representation: str, split: str) -> list[str]:
 
 
 def _report_commands(arguments) -> list[list[str]]:
-    """Build the aggregate and per-class report commands."""
+    """Build the report commands: two comparison tables and the run figures."""
     return [
         [sys.executable, "-u", "-m", "src.analysis.compare_experiments",
          "--run-id", arguments.run_id],
         [sys.executable, "-u", "-m", "src.analysis.compare_class_performance",
          "--run-id", arguments.run_id],
+        [sys.executable, "-u", "-m", "src.analysis.plot_run_figures",
+         "--run-id", arguments.run_id],
     ]
 
 
 def _commands(arguments, pending_experiments) -> list[list[str]]:
-    """Build commands for pending experiments followed by both reports."""
+    """Build commands for pending experiments followed by the reports."""
     commands = []
     for representation, split in pending_experiments:
         commands.append([
