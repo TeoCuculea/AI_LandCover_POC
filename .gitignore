@@ -1,5 +1,5 @@
 # Imaginile EuroSAT (3 GB) se descarca separat, vezi README
-data/
+/data/
 
 # Checkpoint-uri de model (134 MB fiecare, peste limita GitHub de 100 MB)
 *.pth
